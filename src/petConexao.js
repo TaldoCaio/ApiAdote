@@ -4,14 +4,16 @@ const app = express()
 const mongoose = require('mongoose');
 const URI = 'mongodb+srv://Admin:DefaultPassword@serveradote.fbcdvgq.mongodb.net/teste?retryWrites=true&w=majority'
 const Pet = require('./model/petModel');
+const cors = require('cors');
 
+app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
 
 mongoose.connect(URI).then(() => {
     console.log('Conectado ao mongoDB')
     //declara a porta
-    app.listen(3000, () => {
+    app.listen(3100, () => {
         console.log('API rodando na porta 3000');
     })
 }).catch(() => {
@@ -24,14 +26,14 @@ app.get('/pet', async (req, res) => {
         const pet = await Pet.find({})
         res.status(200).json(pet);
     } catch (error) {
-        res.sendStatus(500).json(error)
+        res.status(500).json(error)
     }
 });
 
 app.post('/pet/cadastro', async (req, res) => {
     try {
         const pet = await Pet.create(req.body)
-        res.sendStatus(200).json(pet)
+        res.status(200).json(pet)
     } catch (error) {
         res.status(500).json({ message: error.message })
     }
@@ -55,12 +57,12 @@ app.put('/pet/atualizar/:id', async (req, res) => {
         const { id } = req.params;
         const pet = await Pet.findByIdAndUpdate(id, req.body);
         if (!pet) {
-            return res.sendStatus(404).json({ message: `ID not found` })
+            return res.status(404).json({ message: `ID not found` })
         }
         const petUpdate = await Pet.findById(id)
         res.status(200).json(petUpdate)
     } catch (error) {
-        res.sendStatus(500).json(error)
+        res.status(500).json(error)
     }
 });
 
@@ -71,9 +73,9 @@ app.delete('/pet/remove/:id', async (req, res) => {
         if (!pet) {
             return res.status(404).json({ message: `ID Not found` })
         }
-        res.sendStatus(200).json(pet)
+        res.status(200).json(pet)
     } catch (error) {
-        res.sendStatus(500).json(error)
+        res.status(500).json(error)
     }
 })
 

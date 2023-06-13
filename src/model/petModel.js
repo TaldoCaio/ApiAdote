@@ -7,7 +7,7 @@ const petSchema = mongoose.Schema(
             require: [true, "Insira o peso do animal"]
         },
         raca: {
-            type: Number,
+            type: String,
             require: [true, "Insira a raça do animal"]
         },
         idade: {

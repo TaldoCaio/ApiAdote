@@ -5,7 +5,9 @@ const mongoose = require('mongoose');
 const URI = 'mongodb+srv://Admin:DefaultPassword@serveradote.fbcdvgq.mongodb.net/teste?retryWrites=true&w=majority'
 const Pet = require('./model/petModel.js');
 const Pref = require('./model/prefModel.js')
+const cors = require('cors');
 
+app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
 
@@ -14,8 +16,8 @@ app.use(express.urlencoded({ extended: false }))
 mongoose.connect(URI).then(() => {
     console.log('Conectado ao mongoDB')
     //declara a porta
-    app.listen(3000, () => {
-        console.log('APIpet rodando na porta 3000');
+    app.listen(3100, () => {
+        console.log('APIpet rodando na porta 3100');
     })
 }).catch(() => {
     console.log(error)
@@ -23,7 +25,7 @@ mongoose.connect(URI).then(() => {
 
 
 //faz a busca das caracteristicas em comum no usuario e no animal
-app.get('/findMatch/:idUsuario', async (req, res) => {
+app.get('/recomendados/:idUsuario', async (req, res) => {
     try {
         const { idUsuario } = req.params
         //armazena as 3 preferencias do usuário na variavel, usando como busca o ID do usuário
