@@ -9,13 +9,13 @@ const prefSchema = mongoose.Schema({
     animal: Number,
     estatura: Number,
     raca: Number,
-    Idade: Number
+    idade: Number
 
 },
 {
     timestamps: true
 });
 
-const Pref = mongoose.model('Pref',prefSchema);
-module.exports = Pref;
+const Prefs = mongoose.model('Prefs',prefSchema);
+module.exports = Prefs;
 

@@ -6,13 +6,17 @@ const userSchema = mongoose.Schema(
             type: String,
             require: [true,"insira o nome"]
         },
-        endereco: {
+        email: {
             type: String,
-            require: [true,"insira o endereco"]
+            require: [true,"insira o email"]
         },
         cpf: {
             type: String,
             require: [true,"insira o cpf"]
+        },
+        senha:{
+            type: String,
+            require: [true,"insira uma senha"]
         }
     },
     {

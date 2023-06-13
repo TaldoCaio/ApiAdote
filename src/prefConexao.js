@@ -3,9 +3,11 @@ const express = require('express');
 const app = express()
 const mongoose = require('mongoose');
 const URI = 'mongodb+srv://Admin:DefaultPassword@serveradote.fbcdvgq.mongodb.net/teste?retryWrites=true&w=majority'
-const Pref = require('./model/prefModel.js')
-//As importações são : mongoose,express e node
+const Prefs = require('./model/prefModel.js')
+const cors = require('cors');
 
+//As importações são : mongoose,express e node
+app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
 
@@ -22,7 +24,7 @@ mongoose.connect(URI).then(() => {
 //sempre que for conectar com o banco use async e await
 app.get('/pref', async (req, res) => {
     try {
-        const pref = await Pref.find({})
+        const pref = await Prefs.find({})
         res.status(200).json(pref);
     } catch (error) {
         res.sendStatus(500).json(error)
@@ -31,7 +33,7 @@ app.get('/pref', async (req, res) => {
 
 app.post('/pref/insert', async (req, res) => {
     try {
-        const pref = await Pref.create(req.body)
+        const pref = await Prefs.create(req.body)
         res.status(200).json(pref)
     } catch (error) {
         res.status(500).json({ message: error.message })
@@ -44,7 +46,7 @@ app.post('/pref/insert', async (req, res) => {
 app.get('/pref/:id', async (req, res) => {
     try {
         const {id} = req.params
-        const pref = await Pref.findById(id);
+        const pref = await Prefs.findById(id);
         res.status(200).json(pref)
     } catch (error) {
         res.status(404).json({ message: error.message })
