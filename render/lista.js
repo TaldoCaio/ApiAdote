@@ -1,6 +1,6 @@
 async function renderRecomendados() {
-    const recomendados = await fetch('http://localhost:3100/recomendados/648381539e4221c506211df8');
-    const response = await recomendados.json();
+    const pets = await fetch('http://localhost:3100/pet');
+    const response = await pets.json();
   
     let container = document.querySelector('.content');
     container.innerHTML = '';

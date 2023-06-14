@@ -49,10 +49,10 @@ app.get('/raca', async (req,res)=>{
     }
 })
 
-app.get('/raca/:animalID', async (req,res)=>{
+app.get('/raca/:racaID', async (req,res)=>{
     try {
-        const {animalID} = req.params
-        const raca = await Raca.find({animalID},{_id:0,animalID:0,racaID:0})
+        const {racaID} = req.params
+        const raca = await Raca.find({racaID})
         res.status(200).json(raca)
     } catch (error) {
         res.status(500).json({

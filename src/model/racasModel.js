@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const racaSchema = mongoose.Schema({
-    raca:String,
+    raca: String,
     racaID: Number,
     animalID: Number
 })

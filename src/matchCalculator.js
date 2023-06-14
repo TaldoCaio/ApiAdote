@@ -6,7 +6,7 @@ const URI = 'mongodb+srv://Admin:DefaultPassword@serveradote.fbcdvgq.mongodb.net
 const Pet = require('./model/petModel.js');
 const Pref = require('./model/prefModel.js')
 const cors = require('cors');
-const cors = require('cors');
+
 
 app.use(cors())
 app.use(express.json());
@@ -17,7 +17,7 @@ app.use(express.urlencoded({ extended: false }))
 mongoose.connect(URI).then(() => {
     console.log('Conectado ao mongoDB')
     //declara a porta
-    app.listen(3000, () => {
+    app.listen(3100, () => {
         console.log('APIpet rodando na porta 3000');
     })
 }).catch(() => {
