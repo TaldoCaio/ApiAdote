@@ -1,8 +1,8 @@
 const express = require('express');
-const router = express.Router();
+const Router = express.Router();
 const User = require('../model/userModel'); 
 
-const userRouter = router()
+const userRouter = Router
 
 //post insere no banco com um res usando o modelo criado para a tabela
 userRouter.post('/cadastro', async (req, res) => {
@@ -17,7 +17,7 @@ userRouter.post('/cadastro', async (req, res) => {
 
 //get puxa do banco todos os valores
 
-userRouter.get('/cadastro', async (req, res) => {
+userRouter.get('/cadastro/get', async (req, res) => {
     try {
         const user = await User.find({})
         res.status(200).json(user);

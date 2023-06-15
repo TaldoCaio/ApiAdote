@@ -3,7 +3,7 @@ const router = express.Router();
 const Pet = require('../model/petModel');
 const Pref = require('../model/prefModel.js')
 
-const matchRouter = router()
+const matchRouter = router
 
 //faz a busca das caracteristicas em comum no usuario e no animal
 matchRouter.get('/recomendados/:idUsuario', async (req, res) => {

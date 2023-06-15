@@ -5,7 +5,7 @@ async function postPet() {
     let tipoAnimalInput = parseInt(document.getElementsByName('tipo')[0].value)
     let estaturaInput = parseInt(document.getElementsByName('estatura')[0].value)
     
-    await fetch('http://localhost:3100/pet/cadastro', {
+    await fetch('http://localhost:3100/pets/pet/cadastro', {
         method: "POST",
         body: JSON.stringify({
             peso: pesoInput,

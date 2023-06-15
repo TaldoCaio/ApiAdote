@@ -1,15 +1,18 @@
 const express = require('express');
-const {Router} = express
-const caracteristicasRouter = require('../controller/caracController')
+const Router = express.Router();
+
 const userRouter = require('../controller/userController');
 const matchRouter = require('../controller/matchController');
 const prefRouter = require('../controller/prefController')
+const caracteristicasRouter = require('../controller/caracteristicaController')
+const petRouter = require('../controller/petController')
 
-const routes = Router
+const router = Router
 
-Router.use('/caracteristicas', caracteristicasRouter);
-Router.use('/user', userRouter)
-Router.use('/match', matchRouter)
-Router.use('/preferencias', prefRouter)
+router.use('/caracteristicas', caracteristicasRouter);
+router.use('/user', userRouter)
+router.use('/match', matchRouter)
+router.use('/preferencias', prefRouter)
+router.use('/pets', petRouter)
 
-module.exports = routes
+module.exports = Router

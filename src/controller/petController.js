@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Pet = require('../model/petModel');
 
-const petRouter = router()
+const petRouter = router
 
 petRouter.get('/pet', async (req, res) => {
     try {

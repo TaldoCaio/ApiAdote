@@ -16,7 +16,7 @@ async function renderRaca() {
     let tagOp = "";
 
     if (inputAnimal === "gato") {
-        const getRaca = await fetch('http://localhost:3100/raca/' + 1);
+        const getRaca = await fetch('http://localhost:3100/caracteristicas/raca' + 1);
         const resultRaca = await getRaca.json();
 
         for (let cadaRaca of resultRaca) {
@@ -26,7 +26,7 @@ async function renderRaca() {
             tagOp += `<option value=${racaID}>${raca}</option>`;
         }
     } else if (inputAnimal === "cachorro") {
-        const getRaca = await fetch('http://localhost:3100/raca/' + 2);
+        const getRaca = await fetch('http://localhost:3100/caracteristicas/raca' + 2);
         const resultRaca = await getRaca.json();
 
         for (let cadaRaca of resultRaca) {
@@ -66,7 +66,7 @@ async function postPref() {
         animalInput = 2;
     }
 
-    await fetch('http://localhost:3000/pref/insert', {
+    await fetch('http://localhost:3100/pref/insert', {
         method: "POST",
         body: JSON.stringify({
             idUsuario: "646be46d816c5132ed1e7142",

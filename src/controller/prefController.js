@@ -2,7 +2,7 @@ const Prefs = require('../model/prefModel.js')
 const express = require('express');
 const router = express.Router();
 
-const prefRouter = router()
+const prefRouter = router
 
 prefRouter.get('/pref', async (req, res) => {
     try {

@@ -4,7 +4,7 @@ const Animais = require('../model/animaisModel');
 const Tamanhos = require('../model/tamanhosModel');
 const Raca = require('../model/racasModel')
 
-const caracteristicasRouter = router()
+const caracteristicasRouter = router
 
 caracteristicasRouter.get('/animais', async (req, res) => {
     try {

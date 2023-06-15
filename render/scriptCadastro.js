@@ -4,7 +4,7 @@ async function postCadastro() {
     const senha = document.getElementById('senha').value
     const cpf = document.getElementById('cpf').value
 
-    await fetch('http://localhost:3100/cadastro', {
+    await fetch('http://localhost:3100/user/cadastro', {
         method: "POST",
         body: JSON.stringify({
             nome: nome,
