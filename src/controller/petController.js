@@ -1,27 +1,10 @@
-const { error } = require('console');
 const express = require('express');
-const app = express()
-const mongoose = require('mongoose');
-const URI = 'mongodb+srv://Admin:DefaultPassword@serveradote.fbcdvgq.mongodb.net/teste?retryWrites=true&w=majority'
-const Pet = require('./model/petModel');
-const cors = require('cors');
+const router = express.Router();
+const Pet = require('../model/petModel');
 
-app.use(cors())
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }))
+const petRouter = router()
 
-mongoose.connect(URI).then(() => {
-    console.log('Conectado ao mongoDB')
-    //declara a porta
-    app.listen(3100, () => {
-        console.log('API rodando na porta 3000');
-    })
-}).catch(() => {
-    console.log(error)
-});
-//CRUD
-//sempre que for conectar com o banco use async e await
-app.get('/pet', async (req, res) => {
+petRouter.get('/pet', async (req, res) => {
     try {
         const pet = await Pet.find({})
         res.status(200).json(pet);
@@ -30,7 +13,7 @@ app.get('/pet', async (req, res) => {
     }
 });
 
-app.post('/pet/cadastro', async (req, res) => {
+petRouter.post('/pet/cadastro', async (req, res) => {
     try {
         const pet = await Pet.create(req.body)
         res.status(200).json(pet)
@@ -39,7 +22,7 @@ app.post('/pet/cadastro', async (req, res) => {
     }
 });
 
-app.get('/pet/:id', async (req, res) => {
+petRouter.get('/pet/:id', async (req, res) => {
     try {
         const {id} = req.params;
         const pet = await Pet.findById(id)
@@ -52,7 +35,7 @@ app.get('/pet/:id', async (req, res) => {
     }
 });
 
-app.put('/pet/atualizar/:id', async (req, res) => {
+petRouter.put('/pet/atualizar/:id', async (req, res) => {
     try {
         const { id } = req.params;
         const pet = await Pet.findByIdAndUpdate(id, req.body);
@@ -66,7 +49,7 @@ app.put('/pet/atualizar/:id', async (req, res) => {
     }
 });
 
-app.delete('/pet/remove/:id', async (req, res) => {
+petRouter.delete('/pet/remove/:id', async (req, res) => {
     try {
         const { id } = req.params;
         const pet = await Pet.findByIdAndDelete(id)
@@ -79,3 +62,4 @@ app.delete('/pet/remove/:id', async (req, res) => {
     }
 })
 
+module.exports = petRouter
