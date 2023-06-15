@@ -5,22 +5,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles/listaStyle.css">
-    <title>Document</title>
+    <title>Animais</title>
 </head>
 
 <body>
+    <div class="sidebar">
+        <button class="sidebar-toggle">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+        </button>
+        <ul class="menu">
+            <li><a href="./pref.html">Preferências</a></li>
+            <li><a href="#">Página principal</a></li>
+            <li><a href="./recomendados.html">Recomendados</a></li>
+        </ul>
+    </div>
+
     <div class="container">
+
         <div class="content">
             <div class="card">
-                <div class="topCard">
-                </div>
-                <div class="mediaCard">
-                </div>
-                <div class="bottomCard">
-                </div>
+                <div class="topCard"></div>
+                <div class="mediaCard"></div>
+                <div class="bottomCard"></div>
             </div>
+
         </div>
     </div>
     <script src="../render/lista.js"></script>
+    <script>
+        const sidebarToggle = document.querySelector('.sidebar-toggle');
+        const sidebar = document.querySelector('.sidebar');
+        const content = document.querySelector('.content');
+
+        sidebarToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('show-sidebar');
+            content.classList.toggle('show-sidebar');
+        });
+
+    </script>
 </body>
+
 </html>

@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: false }))
 mongoose.connect(URI).then(() => {
     console.log('Conectado ao mongoDB')
     //declara a porta
-    app.listen(3000, () => {
+    app.listen(3100, () => {
         console.log('API rodando na porta 3000');
     })
 }).catch(() => {
