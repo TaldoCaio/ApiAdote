@@ -1,5 +1,15 @@
 const express = require('express');
-const router = express.Router();
+const {Router} = express
 const caracteristicasRouter = require('../controller/caracController')
+const userRouter = require('../controller/userController');
+const matchRouter = require('../controller/matchController');
+const prefRouter = require('../controller/prefController')
 
-router.get('/caracteristicas', caracteristicasRouter)
+const routes = Router
+
+Router.use('/caracteristicas', caracteristicasRouter);
+Router.use('/user', userRouter)
+Router.use('/match', matchRouter)
+Router.use('/preferencias', prefRouter)
+
+module.exports = routes

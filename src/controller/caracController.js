@@ -1,25 +1,10 @@
 const express = require('express');
-const { Router } = express
+const router = express.Router();
 const Animais = require('../model/animaisModel');
 const Tamanhos = require('../model/tamanhosModel');
 const Raca = require('../model/racasModel')
 
-const caracteristicasRouter = Router()
-
-// app.use(cors())
-// app.use(express.json());
-// app.use(express.urlencoded({ extended: false }))
-
-// mongoose.connect(URI).then(() => {
-//     console.log('Conectado ao mongoDB')
-//     //declara a porta
-//     app.listen(3100, () => {
-//         console.log('API rodando na porta 3000');
-//     })
-// }).catch(() => {
-//     console.log(error)
-// });
-
+const caracteristicasRouter = router()
 
 caracteristicasRouter.get('/animais', async (req, res) => {
     try {
@@ -48,7 +33,7 @@ caracteristicasRouter.get('/raca', async (req, res) => {
     }
 });
 
-caracteristicasRouter.get('/raca/:racaID', (req, res) => {
+caracteristicasRouter.get('/raca/:racaID', async  (req, res) => {
     try {
         const { racaID } = req.params
         const raca = await Raca.find({ racaID })
@@ -84,6 +69,4 @@ caracteristicasRouter.get('/animal/:codAnimal', async (req, res) => {
     }
 });
 
-module.exports = {
-    caracteristicasRouter
-};
+module.exports = caracteristicasRouter

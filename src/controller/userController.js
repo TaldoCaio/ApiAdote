@@ -1,35 +1,11 @@
-const { error } = require('console');
 const express = require('express');
-const app = express()
-const mongoose = require('mongoose');
-const URI = 'mongodb+srv://Admin:DefaultPassword@serveradote.fbcdvgq.mongodb.net/teste?retryWrites=true&w=majority'
+const router = express.Router();
 const User = require('../model/userModel'); 
-const cors = require('cors');
 
-
-app.use(cors())
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }))
-
-mongoose.connect(URI).then(() => {
-    console.log('Conectado ao mongoDB')
-    //declara a porta
-    app.listen(3100, () => {
-        console.log('API rodando na porta 3000');
-    })
-}).catch(() => {
-    console.log(error)
-});
-
-//rotas
-//req = é o que o cliente envia para a API
-//res = é a resposta que vem da API
-app.get('/', (req, res) => {
-    res.send('teste');
-});
+const userRouter = router()
 
 //post insere no banco com um res usando o modelo criado para a tabela
-app.post('/cadastro', async (req, res) => {
+userRouter.post('/cadastro', async (req, res) => {
     try {
         const user = await User.create(req.body)
         res.status(200).json(user);
@@ -41,7 +17,7 @@ app.post('/cadastro', async (req, res) => {
 
 //get puxa do banco todos os valores
 
-app.get('/cadastro', async (req, res) => {
+userRouter.get('/cadastro', async (req, res) => {
     try {
         const user = await User.find({})
         res.status(200).json(user);
@@ -52,7 +28,7 @@ app.get('/cadastro', async (req, res) => {
 
 //puxar por id
 
-app.get('/cadastro/:id', async (req, res) => {
+userRouter.get('/cadastro/:id', async (req, res) => {
     try {
         const { id } = req.params;
         const user = await User.findById(id)
@@ -67,7 +43,7 @@ app.get('/cadastro/:id', async (req, res) => {
 
 //o put é para update 
 
-app.put('/cadastro/:id', async (req, res) => {
+userRouter.put('/cadastro/:id', async (req, res) => {
     try {
         const { id } = req.params;
         const user = await User.findByIdAndUpdate(id, req.body);
@@ -85,7 +61,7 @@ app.put('/cadastro/:id', async (req, res) => {
 
 //deletar o usuario
 
-app.delete('/cadastro/:id', async (req, res) => {
+userRouter.delete('/cadastro/:id', async (req, res) => {
     try {
         const { id } = req.params
         const user = await User.findByIdAndDelete(id)
@@ -97,3 +73,5 @@ app.delete('/cadastro/:id', async (req, res) => {
         res.sendStatus(500).json(error)
     }
 });
+
+module.exports = userRouter
