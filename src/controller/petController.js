@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Pet = require('../model/petModel');
 
-const petRouter = router()
+const petRouter = router
 
 petRouter.get('/pet', async (req, res) => {
     try {
@@ -13,7 +13,7 @@ petRouter.get('/pet', async (req, res) => {
     }
 });
 
-petRouter.post('/pet/cadastro', async (req, res) => {
+petRouter.post('/cadastro', async (req, res) => {
     try {
         const pet = await Pet.create(req.body)
         res.status(200).json(pet)

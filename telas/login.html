@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(-45deg, #ffce51, #ff7253, #fd5754);
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100vh;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0px 2px 23px #000000;
+            width: 300px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .card img {
+            max-width: 100%;
+            height: auto;
+            padding: 0;
+            margin: 0;
+        }
+
+        .card .text-container {
+            overflow: hidden;
+        }
+
+        .title {
+            color: #2b3d59;
+            margin-top: 0;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            max-width: 100%;
+            width: 100%;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .form-group input[type="submit"] {
+            background-color: #ff7253;
+            color: white;
+            cursor: pointer;
+        }
+
+        .form-group input[type="submit"]:hover {
+            background-color: #fd5754;
+        }
+
+        .form-group.inline {
+            display: flex;
+            align-items: center;
+        }
+
+        .form-group.inline label {
+            flex: 0 0 100px;
+            margin-right: 10px;
+        }
+
+        .bottomCard {
+            text-align: center;
+        }
+    </style>
+    <title>Tela de Login</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="topCard">
+                <h2 class="title">Tela de Login</h2>
+            </div>
+            <div class="bottomCard">
+                <form id="loginForm">
+                    <div class="form-group inline">
+                        <label for="email">Usuário:</label>
+                        <input type="text" id="email" name="username" placeholder="Digite seu usuário">
+                    </div>
+                    <div class="form-group inline">
+                        <label for="password">Senha:</label>
+                        <input type="password" id="password" name="password" placeholder="Digite sua senha">
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Login">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="../render/login.js"></script>
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function (event) {
+            event.preventDefault(); // Impede o envio do formulário
+            
+            // Exibe o aviso de login
+            alert("Login realizado com sucesso!");
+
+            // Redireciona para a tela de login
+            window.location.href = "../telas/index.html";
+        });
+    </script>
+</body>
+
+</html>

@@ -4,7 +4,7 @@ const Animais = require('../model/animaisModel');
 const Tamanhos = require('../model/tamanhosModel');
 const Raca = require('../model/racasModel')
 
-const caracteristicasRouter = router()
+const caracteristicasRouter = router
 
 caracteristicasRouter.get('/animais', async (req, res) => {
     try {
@@ -33,7 +33,19 @@ caracteristicasRouter.get('/raca', async (req, res) => {
     }
 });
 
-caracteristicasRouter.get('/raca/:racaID', async  (req, res) => {
+caracteristicasRouter.get('/raca/:animalID', async  (req, res) => {
+    try {
+        const { animalID } = req.params
+        const raca = await Raca.find({ animalID })
+        res.status(200).json(raca)
+    } catch (error) {
+        res.status(500).json({
+            message: error.message
+        })
+    }
+});
+
+caracteristicasRouter.get('/racaByRaca/:racaID', async  (req, res) => {
     try {
         const { racaID } = req.params
         const raca = await Raca.find({ racaID })

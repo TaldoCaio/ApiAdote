@@ -2,11 +2,12 @@ const express = require('express');
 const router = express.Router();
 const Pet = require('../model/petModel');
 const Pref = require('../model/prefModel.js')
+const authenticateToken = require ('../routes/auth')
 
-const matchRouter = router()
+const matchRouter = router
 
 //faz a busca das caracteristicas em comum no usuario e no animal
-matchRouter.get('/recomendados/:idUsuario', async (req, res) => {
+matchRouter.get('/teste/:idUsuario', authenticateToken, async (req, res) => {
     try {
         const { idUsuario } = req.params
         //armazena as 3 preferencias do usuário na variavel, usando como busca o ID do usuário

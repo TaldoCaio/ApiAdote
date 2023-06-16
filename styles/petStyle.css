@@ -88,3 +88,10 @@ body {
 #btn button:hover{
     background: linear-gradient(-45deg, #eec04c, #ec7054, #ee5a57);
 }
+
+#estatura{
+    outline: none;
+    border: none;
+    font-family: 'Poppins', sans-serif;
+    color: #2b344b;
+}

@@ -5,14 +5,12 @@ body {
     background: linear-gradient(-45deg, #ffce51, #ff7253, #fd5754);
 }
 
-
-
 .container {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100vh;
+    height: 150vh;
 }
 
 .navbar {
@@ -35,6 +33,7 @@ body {
 }
 
 .card {
+    /* Mantenha as propriedades CSS existentes para os cards */
     background: #fff;
     border-radius: 20px;
     box-shadow: 0px 2px 23px #000000;
@@ -43,6 +42,22 @@ body {
     margin: 10px;
     box-sizing: border-box;
 }
+
+.card img {
+    max-width: 100%;
+    /* Definir a largura máxima como 100% do container */
+    height: auto;
+    padding: 0;
+    margin: 0;
+    /* Permitir que a altura da imagem seja ajustada proporcionalmente */
+}
+
+.card .text-container {
+    overflow: hidden;
+}
+
+
+
 
 @media (max-width: 1200px) {
     .card {
@@ -70,8 +85,12 @@ body {
 }
 
 .mediaCard img {
-    height: 200px;
-    width: 100%;
+    max-width: 100%;
+    /* Definir a largura máxima como 100% do container */
+    height: auto;
+    padding: 0;
+    margin: 0;
+    /* Permitir que a altura da imagem seja ajustada proporcionalmente */
 }
 
 a .title {
@@ -93,91 +112,5 @@ a .title {
 
 .bottomCard {
     padding: 20px;
-}
-
-.sidebar {
-    width: 250px;
-    height: 100vh;
-    background: #9e5b4a;
-    position: fixed;
-    top: 0;
-    left: -250px;
-    transition: left 0.3s ease;
-    justify-content: center;
-    display: flex;
-}
-
-.sidebar-toggle {
-    width: 30px;
-    height: 30px;
-    border: none;
-    outline: none;
-    position: absolute;
-    top: 20px;
-    right: -30px;
-    cursor: pointer;
-    background: none;
-}
-
-.bar1, .bar2, .bar3 {
-  width: 30px;
-  height: 5px;
-  background-color: #333;
-  margin: 4px 10px;
-  transition: 0.4s;
-  border-radius: 5px;
-}
-
-.change .bar1 {
-  transform: translate(0, 11px) rotate(-45deg);
-}
-
-.change .bar2 {opacity: 0;}
-
-.change .bar3 {
-  transform: translate(0, -11px) rotate(45deg);
-}
-
-.menu {
-    list-style: none;
-    padding: 0;
-    margin: 50px 0;
-}
-
-.menu li {
-    margin-bottom: 10px;
-}
-
-.menu li a {
-    display: block;
-    color: #fff;
-    text-decoration: none;
-    padding: 10px;
-    transition: background 0.3s ease;
-}
-
-.menu li a:hover {
-    background: rgba(255, 255, 255, 0.2);
-}
-
-.show-sidebar {
-    left: 0;
-}
-
-@media (max-width: 768px) {
-    .sidebar {
-        width: 100%;
-        height: auto;
-        position: static;
-        background: none;
-        transition: none;
-    }
-
-    .sidebar-toggle {
-        display: none;
-    }
-
-    .content {
-        margin-left: 0;
-    }
+    padding-top: 0;
 }

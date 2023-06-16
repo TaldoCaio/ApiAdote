@@ -1,23 +1,43 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../model/userModel'); 
-
-const userRouter = router()
+const User = require('../model/userModel');
+const generateToken = require('../routes/authMiddleware')
+const authenticateToken = require ('../routes/auth')
+const userRouter = router
 
 //post insere no banco com um res usando o modelo criado para a tabela
 userRouter.post('/cadastro', async (req, res) => {
     try {
-        const user = await User.create(req.body)
-        res.status(200).json(user);
+        const user = await User.create(req.body);
+        const token = generateToken(user);
+
+        res.status(200).json({ user, token });
     } catch (error) {
-        console.log(error)
-        res.status(500).json({ message: error.message })
+        console.log(error);
+        res.status(500).json({ message: error.message });
+    }
+});
+
+userRouter.post('/login', async (req, res) => {
+    try {
+        const { email, senha } = req.body;
+
+        const user = await User.findOne({ email, senha });
+        if (!user) {
+            return res.status(401).json({ message: 'Credenciais inválidas' });
+        }
+        const token = generateToken(user);
+
+        res.status(200).json({ user, token });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: error.message });
     }
 });
 
 //get puxa do banco todos os valores
 
-userRouter.get('/cadastro', async (req, res) => {
+userRouter.get('/cadastro/get', async (req, res) => {
     try {
         const user = await User.find({})
         res.status(200).json(user);

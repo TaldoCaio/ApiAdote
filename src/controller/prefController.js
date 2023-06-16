@@ -1,36 +1,34 @@
-const Prefs = require('../model/prefModel.js')
+const Prefs = require('../model/prefModel.js');
 const express = require('express');
 const router = express.Router();
+const authenticateToken = require ('../routes/auth')
 
-const prefRouter = router()
-
-prefRouter.get('/pref', async (req, res) => {
+router.get('/getAll', async (req, res) => {
     try {
-        const pref = await Prefs.find({})
+        const pref = await Prefs.find({});
         res.status(200).json(pref);
     } catch (error) {
-        res.sendStatus(500).json(error)
+        res.status(500).json({ message: error.message });
     }
 });
 
-prefRouter.post('/pref/insert', async (req, res) => {
+router.post('/insert', authenticateToken, async (req, res) => {
     try {
-        const pref = await Prefs.create(req.body)
-        res.status(200).json(pref)
+        const pref = await Prefs.create(req.body);
+        res.status(200).json(pref);
     } catch (error) {
-        res.status(500).json({ message: error.message })
+        res.status(500).json({ message: error.message });
     }
 });
 
-prefRouter.get('/pref/:id', async (req, res) => {
+router.get('/pref/:id', async (req, res) => {
     try {
-        const {id} = req.params
+        const { id } = req.params;
         const pref = await Prefs.findById(id);
-        res.status(200).json(pref)
+        res.status(200).json(pref);
     } catch (error) {
-        res.status(404).json({ message: error.message })
+        res.status(404).json({ message: error.message });
     }
 });
 
-module.exports = prefRouter
-
+module.exports = router;

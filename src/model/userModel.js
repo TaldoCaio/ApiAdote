@@ -2,22 +2,10 @@ const mongoose = require('mongoose');
 
 const userSchema = mongoose.Schema(
     {
-        nome: {
-            type: String,
-            require: [true,"insira o nome"]
-        },
-        email: {
-            type: String,
-            require: [true,"insira o email"]
-        },
-        cpf: {
-            type: String,
-            require: [true,"insira o cpf"]
-        },
-        senha:{
-            type: String,
-            require: [true,"insira uma senha"]
-        }
+        nome: String,
+        email: String,
+        cpf: String,
+        senha: String,
     },
     {
         timestamps: true

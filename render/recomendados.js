@@ -1,5 +1,5 @@
 async function renderRecomendados() {
-    const recomendados = await fetch('http://localhost:3100/recomendados/648381539e4221c506211df8');
+    const recomendados = await fetch('http://localhost:3100/match/teste/648381539e4221c506211df8');
     const response = await recomendados.json();
   
     let container = document.querySelector('.content');
@@ -22,11 +22,11 @@ async function renderRecomendados() {
       let descricao = document.createElement('p');
       descricao.classList.add('bottomText');
   
-      const caracAnimal = await fetch('http://localhost:3000/animal/' + cadaRes.animal);
+      const caracAnimal = await fetch('http://localhost:3100/caracteristicas/animal/' + cadaRes.animal);
       const resAnimal = await caracAnimal.json();
-      const caracRaca = await fetch('http://localhost:3000/raca/' + cadaRes.raca);
+      const caracRaca = await fetch('http://localhost:3100/caracteristicas/raca/' + cadaRes.raca);
       const resRaca = await caracRaca.json();
-      const caracEstatura = await fetch('http://localhost:3000/estatura/' + cadaRes.estatura);
+      const caracEstatura = await fetch('http://localhost:3100/caracteristicas/estatura/' + cadaRes.estatura);
       const resEstatura = await caracEstatura.json();
         
       console.log(resAnimal)

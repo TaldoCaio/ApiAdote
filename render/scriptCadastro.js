@@ -1,16 +1,21 @@
 async function postCadastro() {
-    const nome = document.getElementById('username').value
-    const email = document.getElementById('email').value
-    const senha = document.getElementById('senha').value
-    const cpf = document.getElementById('cpf').value
 
-    await fetch('http://localhost:3100/cadastro', {
+    document.getElementById('formulario').addEventListener("submit", function(event){
+        event.preventDefault()
+    });
+
+    const inputnome = document.getElementById('username').value;
+    const inputemail = document.getElementById('email').value;
+    const inputsenha = document.getElementById('senha').value;
+    const inputcpf = document.getElementById('cpf').value;
+
+    await fetch('http://localhost:3100/user/cadastro', {
         method: "POST",
         body: JSON.stringify({
-            nome: nome,
-            email: email,
-            cpf: cpf,
-            senha: senha
+            nome: inputnome,
+            email: inputemail,
+            cpf: inputcpf,
+            senha: inputsenha
         }),
         headers: {
             "Content-type": "application/json; charset=UTF-8"
@@ -19,4 +24,6 @@ async function postCadastro() {
         .then(response => response.json())
         .then(json => console.log(json))
         .catch(error => console.log(error));
+
+        console.log(inputnome,inputemail,inputsenha,inputcpf)
 }
