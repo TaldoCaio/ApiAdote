@@ -37,8 +37,10 @@ async function renderRecomendados() {
     const caracEstatura = await fetch('http://localhost:3100/caracteristicas/estatura/' + cadaRes.estatura);
     const resEstatura = await caracEstatura.json();
       
-    console.log(resAnimal)
-    titulo.innerHTML = resRaca[0].raca; // Utilize resRaca[0].raca para obter o nome da raça corretamente
+    let raca = resRaca.raca
+    console.log(raca)
+
+    titulo.innerHTML = raca; // Utilize resRaca[0].raca para obter o nome da raça corretamente
     subTitulo.innerHTML = resAnimal[0].animal; // Utilize resAnimal[0].nome para obter o nome do animal corretamente
     descricao.innerHTML = `${resAnimal[0].animal} macho com ${cadaRes.idade} anos de idade, animal de ${resEstatura[0].nome} porte`; // Utilize resEstatura[0].nome para obter o nome da estatura corretamente
 
