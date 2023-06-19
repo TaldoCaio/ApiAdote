@@ -1,8 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../model/userModel');
-const generateToken = require('../routes/authMiddleware')
-const authenticateToken = require ('../routes/auth')
 const userRouter = router
 
 //post insere no banco com um res usando o modelo criado para a tabela
@@ -21,14 +19,12 @@ userRouter.post('/cadastro', async (req, res) => {
 userRouter.post('/login', async (req, res) => {
     try {
         const { email, senha } = req.body;
-
-        const user = await User.findOne({ email, senha });
+        const user = await User.findOne({ email, senha });  
         if (!user) {
             return res.status(401).json({ message: 'Credenciais inválidas' });
         }
-        const token = generateToken(user);
-
-        res.status(200).json({ user, token });
+        const response = user._id
+        res.status(200).json({response}); 
     } catch (error) {
         console.log(error);
         res.status(500).json({ message: error.message });

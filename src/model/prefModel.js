@@ -2,10 +2,7 @@ const mongoose = require('mongoose');
 
 const prefSchema = mongoose.Schema({
 
-    idUsuario: {
-        type: String,
-        require: [true, "insira o usuário"]
-    },
+    idUsuario: String,
     animal: Number,
     estatura: Number,
     raca: Number,

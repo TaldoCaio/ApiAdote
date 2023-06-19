@@ -66,10 +66,13 @@ async function postPref() {
         animalInput = 2;
     }
 
+    const infoString = localStorage.getItem('user')
+    const info = JSON.parse(infoString);
+
     await fetch('http://localhost:3100/preferencias/insert', {
         method: "POST",
         body: JSON.stringify({
-            idUsuario: "646be46d816c5132ed1e7142",
+            idUsuario: info.response,
             animal: animalInput,
             estatura: portePref,
             raca: raca,
@@ -79,8 +82,8 @@ async function postPref() {
             "Content-type": "application/json; charset=UTF-8"
         }
     })
-    .then(response => response.json())
-    .then(json => console.log(json))
-    .catch(error => console.log(error));
+        .then(response => response.json())
+        .then(json => console.log(json))
+        .catch(error => console.log(error));
 }
 

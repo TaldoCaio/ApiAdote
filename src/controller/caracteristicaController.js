@@ -48,7 +48,7 @@ caracteristicasRouter.get('/raca/:animalID', async  (req, res) => {
 caracteristicasRouter.get('/racaByRaca/:racaID', async  (req, res) => {
     try {
         const { racaID } = req.params
-        const raca = await Raca.find({ racaID })
+        const raca = await Raca.findOne({ racaID })
         res.status(200).json(raca)
     } catch (error) {
         res.status(500).json({
